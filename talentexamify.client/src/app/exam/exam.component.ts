@@ -1,5 +1,5 @@
 import { Time } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-exam',
@@ -14,7 +14,8 @@ export class ExamComponent implements OnInit {
   containerType = "video/webm";
   mediaRecorder: any;
   options: any;
-  soundMeter:any = null;
+  soundMeter: any = null;
+  @ViewChild('videoElement') videoElement!: ElementRef;
   liveVideoElement:any = document.querySelector('#gum'); 
    constraints = { audio: true, video: { width: { min: 640, ideal: 640, max: 640 }, height: { min: 480, ideal: 480, max: 480 }, framerate: 60 } };
     ngOnInit(): void {
@@ -41,8 +42,10 @@ export class ExamComponent implements OnInit {
                 }
               });
 
-              this.liveVideoElement.srcObject = this.localStream;
-              this.liveVideoElement.play();
+              /*this.liveVideoElement.srcObject = this.localStream;
+              this.liveVideoElement.play();*/
+              this.videoElement.nativeElement.srcObject = this.localStream;
+              this.videoElement.nativeElement.play();
 
               //try {
               //  window.AudioContext = window.AudioContext || window.webkitAudioContext;
