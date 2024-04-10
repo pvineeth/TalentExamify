@@ -6,4 +6,9 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj" />
+    <ProjectReference Include="..\TalentExamifyEFCore\TalentExamifyEFCore.csproj" />
+  </ItemGroup>
+
 </Project>

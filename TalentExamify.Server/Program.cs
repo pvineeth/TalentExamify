@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Repository.RoleRepository;
 using TalentExamifyEFCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,8 @@ builder.Services.AddDbContext<TalentExamifyContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("TalentExamifyContext"), s => s.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery));
 }, ServiceLifetime.Scoped);
+
+builder.Services.AddTransient<IRoleRepository,RoleRepository>();
 
 var app = builder.Build();
 
